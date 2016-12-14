@@ -15,6 +15,8 @@ mongoose.connection.on('disconnected', function() {
 });
 
 
+// 实例1
+
 var TestSchema = new mongoose.Schema({
     name : {type:String},
     age  : {type:Number,default:0},
@@ -39,6 +41,29 @@ TestEntity.save(function(err,doc){
         console.log(doc);
     }
 });
+
+
+// 实例2:增删改查
+var mongooseSchema = new mongoose.Schema({
+    username: {type: String, defalut: '匿名用户'},
+    title: {type: string},
+    content: {type: string},
+    time: {type: Data, defalut: Date.now},
+    age: {type: Number}
+});
+
+
+mongooseSchema.methods.findbyusername = function(username, callback) {
+    return this.model('mongoose').find({username: username}, callback);
+};
+
+mongooseSchema.static.findbytitle = function(title, callback) {
+    return this.model('mongoose').find({title,title}, callback);
+};
+
+var mongooseModel = db.model('mongoose', mongooseSchema);
+
+var doc = {username: ''};
 
 
 module.exports = mongoose;
