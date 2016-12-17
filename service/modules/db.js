@@ -17,38 +17,38 @@ mongoose.connection.on('disconnected', function() {
 
 // 实例1
 
-var TestSchema = new mongoose.Schema({
-    name : {type:String},
-    age  : {type:Number,default:0},
-    time : {type:Date,default:Date.now},
-    emial : {type:String,default:''}
-});
+// var TestSchema = new mongoose.Schema({
+//     name : {type:String},
+//     age  : {type:Number,default:0},
+//     time : {type:Date,default:Date.now},
+//     emial : {type:String,default:''}
+// });
 
 
-var TestModel = db.model("test1", TestSchema);
+// var TestModel = db.model("test1", TestSchema);
 
 
-var TestEntity = new TestModel({
-    name:'helloworld',
-    age:28,
-    emial:'helloworld@qq.com'
-});
+// var TestEntity = new TestModel({
+//     name:'helloworld',
+//     age:28,
+//     emial:'helloworld@qq.com'
+// });
 
-TestEntity.save(function(err,doc){
-    if(err){
-        console.log("error :" + err);
-    } else {
-        console.log(doc);
-    }
-});
+// TestEntity.save(function(err,doc){
+//     if(err){
+//         console.log("error :" + err);
+//     } else {
+//         console.log(doc);
+//     }
+// });
 
 
 // 实例2:增删改查
 var mongooseSchema = new mongoose.Schema({
     username: {type: String, defalut: '匿名用户'},
-    title: {type: string},
-    content: {type: string},
-    time: {type: Data, defalut: Date.now},
+    title: {type: String},
+    content: {type: String},
+    time: {type: Date, defalut: Date.now},
     age: {type: Number}
 });
 
@@ -63,7 +63,25 @@ mongooseSchema.static.findbytitle = function(title, callback) {
 
 var mongooseModel = db.model('mongoose', mongooseSchema);
 
-var doc = {username: ''};
+var mongooseEntity = new mongooseModel({username: "allen"});
+
+mongooseEntity.save(function(error) {
+    if(error) {
+        console.log(error);
+    } else {
+        console.log('saved OK!');
+    }
+});
+
+mongooseEntity.findbyusername('allen', function(error,result) {
+    if(error) {
+        console.log(error);
+    } else {
+        console.log(result);
+    }
+
+});
+
 
 
 module.exports = mongoose;

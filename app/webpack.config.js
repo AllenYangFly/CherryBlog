@@ -1,33 +1,35 @@
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     devtool: 'eval-source-map',
-    entry: __dirname + "/src/main.js",
+    entry: __dirname + "/components/Router.js",
     output: {
-        path: __dirname +"/dist",
-        filename: "build.js"
+        path: __dirname +"/dist/",
+        filename: "bundle.js"
     },
     module: {
-        // preLoaders: [
-        //     {
-        //         test: /\.jsx$|\.js$/,
-        //         loader: 'eslint-loader',
-        //         include: `${__dirname}/src`,
-        //         exclude: /bundle\.js$/
-        //     }
-        // ],
+        preLoaders: [
+            {
+                test: /\.jsx$|\.js$/,
+                loader: 'eslint-loader',
+                include: `${__dirname}/src`,
+                exclude: /bundle\.js$/
+            }
+        ],
         loaders: [
             {
+                test: /\.json$/,
+                loader: "json"
+            }, {
                 test: /\.css$/,
-                loader: "style!css?modules!postcss",
-            },
-            {
+                loader: "style!css"
+            }, {
+                test: /\.scss$/,
+                loader: "style!css!sass!postcss-loader"
+            }, {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: "babel"
-            },
-            {
-                test:　/\.json$/,
-                exclude: /node_modules/,
-                loader: "json"
+                loader: 'babel'
             }
         ]
     },
@@ -41,7 +43,15 @@ module.exports = {
         inline: true,
         port: 8008,
     },
-    plugins: []
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'Allen - 抹茶小屋',
+            filename: __dirname+'/dist/index.html',
+            hash: true,
+            inject: true,
+            template: __dirname+'/src/index.html'
+        })
+    ]
 };
 
 

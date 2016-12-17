@@ -1,0 +1,32 @@
+.SideNav {
+    .log {
+        margin: 50px 0 20px;
+        text-align:center;
+    }
+
+    .nav {
+        list-style: none;
+        padding: none;
+        text-align: center;
+        
+        li {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 2px;
+            color: #fff;
+            margin-right: 5px;  
+            &:hover {
+                background: rgba(75,169,106,.5);    
+                transition: background .2s ease-out;    
+            }
+           
+        }
+
+        .active {
+            li{
+                background: rgba(75,169,106,.5);  
+            }
+        }
+    }
+
+}
