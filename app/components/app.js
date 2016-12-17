@@ -8,7 +8,6 @@ import Style from './common/layout.scss';
 import Normalize from 'Normalize.css';
 
 
-
 class App extends React.Component {
     constructor (props) {
         super(props);
@@ -19,7 +18,7 @@ class App extends React.Component {
             <div>
                 <Side></Side>
                 <Top></Top>
-                <section className="content">
+                <section className="contentBox">
                     {this.props.children}
                 </section>
             </div>

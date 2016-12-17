@@ -3,7 +3,7 @@ import Style from './common/layout.scss';
 
 import Video from './Video/Video.jsx';
 import SideNav from './SideNav/sideNav.jsx';
-
+import Search from './Search/Search.jsx';
 
 class Side extends React.Component {
     constructor(props) {
@@ -16,8 +16,9 @@ class Side extends React.Component {
                 <Video videoSrc="../source/side.mp4"/>
                 <div className="side-content">
                     <SideNav></SideNav>
-                    
+                    <Search></Search>
                 </div>
+                <div className="sideBorder"></div>
             </div>
         );
     }

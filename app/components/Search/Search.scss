@@ -1,0 +1,25 @@
+#search {
+    margin: 20px auto 30px;
+    text-align: center;
+    ::-moz-placeholder { color: #fff; }
+    ::-webkit-input-placeholder { color:#fff; }
+    :-ms-input-placeholder { color:#fff; }
+    input {
+        width: 200px;
+        border-radius: 20px;
+        padding: 10px 30px 10px 10px;
+        border: none;
+        background: hsla(0,0%,100%,.5);
+        color: #fff;
+        text-align: center;
+        -webkit-transition: all .3s ease-out;
+        transition: all .3s ease-out;
+        font: 11px BlinkMacSystemFont;
+    }
+    input:focus {
+        width: 220px;
+        max-width:100%;
+        background: #fff;
+        color: #444;
+    }
+}

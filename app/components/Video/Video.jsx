@@ -6,7 +6,8 @@ class Video extends React.Component{
     }
 
     componentDidMount() {
-        this.refs.sideVideo.style = `height:${window.innerHeight}px; z-index:-1;`;
+        
+        this.refs.sideVideo.style = `width:${window.innerWidth*0.3}px;z-index:-1;`;
     }
 
     render () {

@@ -16,7 +16,7 @@ class Content extends React.Component {
 
     render() {
         return (
-            <div className="content">
+            <div className="contentWrap">
                 <Router history={hashHistory}>
                         <IndexRoute  component={Article} />
                         <Route path="/Comment" component={Comment} />
