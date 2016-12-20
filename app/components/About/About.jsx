@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ContentTitle from './../ContentTitle/ContentTitle.jsx';
+
 class About extends React.Component {
     constructor(props) {
         super(props);
@@ -7,7 +9,9 @@ class About extends React.Component {
 
     render () {
         return (
-            <div>这是About</div>
+            
+                <ContentTitle title="个人介绍"/>          
+            
         );
     }
 }

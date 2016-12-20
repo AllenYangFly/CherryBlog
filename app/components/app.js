@@ -27,7 +27,7 @@ class App extends React.Component {
 }
 
 React.propTypes = {
-
+    
 };
 
 export default App

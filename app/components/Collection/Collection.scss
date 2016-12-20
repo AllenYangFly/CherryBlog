@@ -1,0 +1,37 @@
+.collection {
+    .collection-item {
+        .item-content {
+            padding: 1rem 2rem;
+            line-height: 180%;
+            a {
+                position: relative;
+                display: block;
+                display: inline-block;
+                box-sizing: border-box;
+                border: 1px solid #efefef;
+                margin: 0 10px 10px 0;
+                padding: 10px 15px 10px 25px;
+                line-height: 100%;
+                border-radius: 4px;
+                text-transform: uppercase;
+                color: #757575;
+                -webkit-transition: all .2s ease-out;
+                transition: all .2s ease-out;
+                text-decoration: none;
+                &:hover {
+                    color: #58bd7a;
+                    border: 1px solid #58bd7a;
+                    text-decoration: none;
+                }
+                &::after {
+                    position: absolute;
+                    content: "";
+                    left: 12px;
+                    top: 13px;
+                    border: 4px solid transparent;
+                    border-left-color: #58bd7a;
+                }
+            }
+        }
+    }
+}

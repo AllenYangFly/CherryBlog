@@ -1,4 +1,5 @@
 import React from 'react';
+import Style from './common/layout.scss'
 
 class Side extends React.Component {
     constructor(props) {
@@ -7,10 +8,12 @@ class Side extends React.Component {
 
     render() {
         return (
-            <div className="top">这里是top</div>
+            <div className="top">
+                <img src="../source/6c0d4fd025b14c6963c623ca65b7aafc.svg" />
+                <h3>Allen - 抹茶小屋</h3>
+            </div>
         );
     }
-
     
 }
 

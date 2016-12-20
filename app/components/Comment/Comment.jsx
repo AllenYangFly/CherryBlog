@@ -1,5 +1,6 @@
 import React from 'react';
 
+import ContentTitle from './../ContentTitle/ContentTitle.jsx';
 class Comment extends React.Component {
     constructor(props) {
         super(props);
@@ -7,7 +8,9 @@ class Comment extends React.Component {
 
     render () {
         return (
-            <div>这是Comment</div>
+            
+                <ContentTitle title="最新评论"/>                
+            
         );
     }
 }

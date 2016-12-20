@@ -1,0 +1,15 @@
+.content-title {
+    margin-left: 2rem;
+    padding: 1rem 0 0;
+    border-bottom: 1px solid #efefef;
+    .active {
+        font-weight: 600;
+        border-bottom: 2px solid #4ba96a;
+        color: #4ba96a;
+    }
+    .single {
+        display: inline-block;
+        font-size: 1rem;
+        padding: 8px 18px;
+    }
+}
