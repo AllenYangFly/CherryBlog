@@ -10,6 +10,10 @@ class Collection extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+        
+    }
+
     render () {
         return (
             <div className="collection">
@@ -17,7 +21,7 @@ class Collection extends React.Component {
                     COLLECTION_DATA.map((item, index) => {
                         return (
                             <div key={index} className="collection-item">
-                                <ContentTitle  title={item.title} className="item-title"/>
+                                <ContentTitle  title={item.title} className="item-title" isSingle={true}/>
                                 <div className="item-content">
                                     {
                                         item.list.map((itemBit, index) => {

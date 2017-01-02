@@ -1,0 +1,46 @@
+.comment-item {
+    padding: 1rem 2rem;
+    
+    border-bottom: 1px solid #efefef;
+    .comment-header {
+        font-size: .9rem;
+        span {
+            color: #4ba96a;
+            margin-right: 5px;
+            a{
+                color: #4ba96a;
+            }
+        }
+    }
+    .Comment-content {
+        font-size: 1rem;
+        line-height: 110%;
+        padding:.5rem 1rem 1rem;
+    }
+    .Comment-footer {
+        width: 40%;
+        margin-left: 55%;
+        font-size: .8rem;
+        text-align: right;
+        em {
+            margin:0 5px;
+        }
+        a {
+            color: #555555;
+        }
+    }
+}
+
+
+@media only screen and ( max-width: 768px ){
+    .comment-item {
+        padding: 1rem;
+        .Comment-footer {
+            width: 100%;
+            margin-left: 0;
+            a,em {
+                display: none;
+            }
+        }
+    }
+}

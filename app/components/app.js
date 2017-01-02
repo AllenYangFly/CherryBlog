@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import Side from './Side.jsx';
 import Top from './Top.jsx';
 
-import Style from './common/layout.scss';
-import Normalize from 'Normalize.css';
+import Style  from './common/layout.scss';
+
 
 
 class App extends React.Component {
