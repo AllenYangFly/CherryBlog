@@ -5,11 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var  bRoutes= require('./routes/backsystem/index');
+var  bRoutes = require('./routes/backsystem/index');
+var  fRoutes = require('./routes/blog/index');
 
 var app = express();
 
-// view engine setup
+// backsystem view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -21,7 +22,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// backsystem route
 app.use('/admin', bRoutes);
+
+// blog route
+app.use('/', fRoutes);
+
+
+// error handlers
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -29,8 +37,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-// error handlers
 
 // development error handler
 // will print stacktrace

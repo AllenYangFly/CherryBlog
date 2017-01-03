@@ -2,8 +2,8 @@
 var express = require('express'),
     router = express.Router(),
     crypto = require('crypto'),
-    User = require('../models/user.js'),
-    Post = require("../models/post.js");
+    User = require('../../models/user.js'),
+    Post = require("../../models/post.js");
 
 // 主页路由
 router.get('/', function(req, res) {
@@ -19,6 +19,8 @@ router.get('/', function(req, res) {
             error : req.flash('error').toString()
         });
     });
+    
+    console.log("backsystem");
 });
 
 // 注册页路由
