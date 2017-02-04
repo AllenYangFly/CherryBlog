@@ -1,10 +1,12 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var backsystemUrl = '/../service/views/blog';
 
 module.exports = {
     devtool: 'eval-source-map',
     entry: __dirname + "/components/Router.js",
     output: {
-        path: __dirname +"/dist/",
+
+        path: __dirname + backsystemUrl + "/dist/",
         filename: "bundle.js"
     },
     module: {
@@ -46,10 +48,10 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Allen - 抹茶小屋',
-            filename: __dirname+'/dist/index.html',
+            filename: __dirname+ backsystemUrl + '/dist/index.html',
             hash: true,
             inject: true,
-            template: __dirname+'/src/index.html'
+            template: __dirname + '/src/index-template.html'
         })
     ]
 };

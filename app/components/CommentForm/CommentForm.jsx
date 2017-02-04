@@ -1,20 +1,38 @@
 import React from 'react';
 import Style from './CommentForm.scss';
 
-class Form extends React.Component {
+class CommentForm extends React.Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
-        var nickName = this.refs.nickName,
-            Link = this.refs.link,
-            Email = this.refs.email,
-            TextContent = this.refs.textarea;
-
-        
+        fetch(this.props.url,{
+            method: "POST", 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nickName: this.refs.nickName.value,
+                link: this.refs.link.value,
+                email: this.refs.email.value,
+                textContent: this.refs.textarea.value,
+                pageId: this.props.pageId})
+            }
+        ).then(response => {
+            return response.json();
+        }).then(data => {
+            if(data.status == 1) {
+                alert("留言成功!");
+            }
+        }).catch(e => {
+            console.log("Oops, error");
+        });
     }
+
+
 
     render () {
         return (
@@ -34,4 +52,4 @@ class Form extends React.Component {
     }
 }
 
-export default Form
+export default CommentForm

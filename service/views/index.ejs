@@ -1,13 +1,55 @@
 <% if (!user) { %>
 <div class="hero-unit">
-<h1>欢迎来到 Microblog</h1>
-<p>Microblog 是一个基于 Node.js 的微博系统。</p>
+<h2>欢迎来到  樱花博客后台管理系统</h2>
+<p>这是一套基于express的博客系统</p>
 <p>
-<a class="btn btn-primary btn-large" href="/login">登录</a>
-<a class="btn btn-large" href="/reg">立即注册</a>
+<a class="btn btn-primary btn-large" href="/admin/login">登录</a>
+<a class="btn btn-large" href="/admin/reg">立即注册</a>
 </p>
 </div>
 <% } else { %>
-<%- partial('say') %>
+<div class="row">
+    
+    <div class="nav span2">
+        <ul class=" nav nav-pills nav-stacked bs-docs-sidenav" role="tablist">
+            <li role="presentation" class="active"><a href="/admin/">所有文章</a></li>
+            <li role="presentation" ><a href="/admin/newPost">新增文章</a></li>
+            <li role="presentation"><a href="/admin/leaveBoard">查看留言</a></li>
+        </ul>
+    </div>
+    
+    
+    <div class="content span10">
+        <table class="table table-striped">
+            <tr>
+                <th>文章ID</th>
+                <th>文章标题</th>
+                <th>操作</th>
+            </tr>
+            <% posts.forEach(function(post, index) { %>
+                
+            <%})%>
+
+
+            <% posts.forEach(function(post, index) {%>
+           
+                
+                <form method="get" action="removePost">
+                    <tr>
+                        <td><%= post.linkId %></td>
+                        <td><%= post.title %></td>
+                        <td>
+                            <input type="text" value="<%= post.linkId %>" name="linkId" style="display:none;">
+                            <button  class="btn btn-small btn-primary" data-id="<%= post.linkId %>" type="button"><a href="/admin/postInfo?linkId=<%= post.linkId %>" style="color:#fff;text-decoration:none;">修改</a></button>
+                            <button type="submit" class="btn btn-small btn-wraming" data-id="<%= post.linkId %>" type="button">删除</button>
+                        </td>
+                    </tr>
+                </form>
+                
+            <%}) %>
+            
+        </table>
+    </div>
+    
+</div>
 <% } %>
-<%- partial('posts', {posts:posts}) %> 

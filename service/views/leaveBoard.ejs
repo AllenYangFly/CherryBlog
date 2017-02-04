@@ -1,0 +1,27 @@
+<div class="row">
+    
+    <div class="nav span2">
+        <ul class=" nav nav-pills nav-stacked bs-docs-sidenav" role="tablist">
+            <li role="presentation"><a href="/admin">所有文章</a></li>
+            <li role="presentation"><a href="/admin/newPost">新增文章</a></li>
+            <li role="presentation"  class="active"><a href="/admin/leaveBoard">查看留言</a></li>
+        </ul>
+    </div>
+    
+    <div class="content span10">
+        <% leaveBoard.forEach(function(leaveBoard, index) {%>
+           
+                <div >
+                    <h3><a href="<%= leaveBoard.link %>"><%= leaveBoard.nickName %></a> 说</h3>
+                    <p><small><%= leaveBoard.create_date %></small><small style="margin-left:10px;"><%= leaveBoard.email %></small></p>
+                    <p><%= leaveBoard.textContent %></p>
+                    
+                    <hr/>
+                </div>
+
+            <%}) %>
+           
+        
+    </div>
+    
+</div>

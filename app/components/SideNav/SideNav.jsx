@@ -17,13 +17,13 @@ class SideNav extends React.Component {
                     <IndexLink to="/" activeClassName="active">
                         <li>日志</li>
                     </IndexLink>
-                    <Link to="/Comment" activeClassName="active">
+                    <Link to="/comment" activeClassName="active">
                         <li>评论</li>  
                     </Link>  
-                    <Link to="/Collection" activeClassName="active">
+                    <Link to="/collection" activeClassName="active">
                         <li> 收藏</li>   
                     </Link> 
-                    <Link to="/About" activeClassName="active">
+                    <Link to="/about" activeClassName="active">
                         <li>关于</li>    
                     </Link>
                 </ul>

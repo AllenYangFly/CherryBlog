@@ -1,0 +1,12 @@
+CACHE　MANIFEST
+#v0.0.1
+CACHE:
+#需要缓存的文件
+bundle.js
+../source/03965c746d5264e559e2d7cd2ba82af3.svg
+../source/side.mp3
+../source/1fb3979b12ef1f9a285eee29b60e9236.svg
+../source/1fb3979b12ef1f9a285eee29b60e9236.svg
+../source/daa7c2d8913dd091dabc404de1b60cdb.svg
+FALLBACK:
+#无法访问的页面

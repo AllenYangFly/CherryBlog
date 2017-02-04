@@ -1,8 +1,6 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+#post .form-horizontal .control-label{
+    width: 50px;
 }
-
-a {
-  color: #00B7FF;
+#post .form-horizontal .controls{
+    margin-left: 50px;
 }

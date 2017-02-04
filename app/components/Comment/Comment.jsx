@@ -6,70 +6,59 @@ import Style from './Comment.scss';
 class Comment extends React.Component {
     constructor(props) {
         super(props);
+        this.state={
+            services:[],
+            pages: 1
+        }
     }
 
     componentDidMount() {
-       
+        fetch('http://localhost:3000/comment/getComment',{
+            method: "GET", 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: this.state.pages
+        }).then((response) => {
+            return response.json();
+        }).then((data) => {
+            this.setState({
+                services : data
+            })
+        }).catch(function(e) {
+            console.log("Oops, error");
+        });
     }
 
     render () {
+        let serviceShows = this.state.services.map((service, index) => {
+            return (
+                <div className="comment-item" key={index}>
+                    <div className="comment-header">
+                        <p>
+                            <span><a href={service.link}>{service.nickName}</a></span>说:
+                        </p>
+                    </div>
+                    <div className="comment-content">
+                        <p>
+                            {service.content}
+                        </p>
+                    </div>
+
+                    <div className="comment-footer">
+                        <abbr>{service.time}</abbr>
+                        <em>/</em>
+                        <a href={service.pagesLink}>查看</a>
+                    </div>
+                </div>
+            );
+           
+        });
         return (
             <section className="comment">
                 <ContentTitle title="最新评论" isSingle={true}/>
-                <div className="comment-item">
-                    <div className="comment-header">
-                        <p>
-                            <span><a href="http://allenyang.com">一世浮云</a></span>说:
-                        </p>
-                    </div>
-                    <div className="comment-content">
-                        <p>
-                            界面设计的不错，很好看
-                        </p>
-                    </div>
-
-                    <div className="comment-footer">
-                        <abbr>2015-05-30 02:10</abbr>
-                        <em>/</em>
-                        <a href="allenyang.com">查看</a>
-                    </div>
-                </div>
-                <div className="comment-item">
-                    <div className="comment-header">
-                        <p>
-                            <span><a href="http://allenyang.com">一世浮云</a></span>说:
-                        </p>
-                    </div>
-                    <div className="comment-content">
-                        <p>
-                            界面设计的不错，很好看界面设计的不错，很好看界面设计的不错，很好看界面设计的不错，很好看界面设计的不错，很好看界面设计的不错，很好看
-                        </p>
-                    </div>
-
-                    <div className="comment-footer">
-                        <abbr>2015-05-30 02:10</abbr>
-                        <em>/</em>
-                        <a href="http://allenyang.cn">查看</a>
-                    </div>
-                </div>
-                <div className="comment-item">
-                    <div className="comment-header">
-                        <p>
-                            <span>一世浮云</span>说:
-                        </p>
-                    </div>
-                    <div className="comment-content">
-                        <p>
-                            界面设计的不错，很好看界面设计的不错，很好看界面设计的不错，很好看界面设计的不错，很好看
-                        </p>
-                    </div>
-
-                    <div className="comment-footer">
-                        <abbr>2015-05-30 02:10</abbr>
-                        <em>/</em>
-                        <a>查看</a>
-                    </div>
-                </div>
+                {serviceShows}
             </section>
         );
     }

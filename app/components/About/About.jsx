@@ -22,7 +22,7 @@ class About extends React.Component {
                     我是个人介绍
                 </div>
                 <ContentTitle title="给我留言" isSingle={true}/>
-                <CommentForm/>
+                <CommentForm url="http://localhost:3000/about/saveLeave"/>
             </section>
         );
     }

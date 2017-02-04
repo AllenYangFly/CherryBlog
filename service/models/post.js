@@ -1,85 +1,111 @@
-var mongodb = require('./db');
+var mongoose = require('./db.js');
+var Schema = mongoose.Schema;
+
 
 /*
- * 集合`posts`的文档`Post`构造函数
- * @param {String} username: 发言人的名字
- * @param {String} post: 发言内容
- * @param {String} time: 发言时间
+ * 集合`Post`的文档`Post`构造函数
+ * @param {String} nickName: 留言人的昵称
+ * @param {String} link: 留言人链接
+ * @param {String} email: 留言人邮箱
+ * @param {String} content: 文章内容
  */
-function Post(username,post,time) {
-	this.user = username;
-	this.post = post;
 
-	if(time) {
-		this.time = time;
-	} else {
-		this.time = new Date();
-	}
+var CommitSchema = new Schema({
+    nickName: String,
+    link: String,
+    textContent: String,
+    CreateDate: {type:Date,default:Date.now},
+    reply: String,
+    pageId: String
+});
+
+var PostSchema = new Schema({
+    title: String,
+    linkId: String,
+    nickName: String,
+    createDate: {type:Date, default:Date.now},
+    content: String,
+    postType: String,
+    commit: [CommitSchema]
+});
+
+
+
+var PostModel = mongoose.model("Post",PostSchema);
+var CommitModel = mongoose.model("Commit",CommitSchema);
+
+var Post = function(){};
+module.exports = new Post();
+
+
+/*
+ * 保存一个文章到数据库
+ * @param {Function} callback: 执行完数据库操作的应该执行的回调函数
+ */  
+Post.prototype.save = function(obj, callback) {
+    var instance = new PostModel(obj);
+    instance.save(function(err){
+        callback(err);
+    }) 
 };
 
-module.exports = Post;
 
 /*
- * 保存一条发言到数据库
+ * 返回所有文章
+ * @param {Function} callback: 查询所有文章，执行返回回调函数
+ */
+Post.prototype.find=function(callback){
+    PostModel.find({}).sort({'createDate':'-1'}).exec(function(err,obj){
+        callback(err,obj);
+    });
+}
+
+
+/*
+ * 更新linkId的文章
  * @param {Function} callback: 执行完数据库操作的应该执行的回调函数
  */
-Post.prototype.save = function save(callback) {
-	var post = {
-		user: this.user,
-		post: this.post,
-		time: this.time,
-	};
-	mongodb.open(function(err, db) {
-		if (err) {
-			return callback(err);
-		}
-
-		db.collection('posts', function(err, collection) {
-			if (err) {
-				mongodb.close();
-				return callback(err);
-			}
-			collection.insert(post, {safe: true}, function(err, post) {
-				mongodb.close();
-				callback(err, post);
-			});
-		});
-	});
-};
+Post.prototype.update=function(post, callback){
+    PostModel.update(post,function(err,obj){//更新
+         callback(err,obj);
+    });
+}
 
 /*
- * 查询一个用户的所有发言
- * @param {String} username: 需要查询的用户的名字 
+ * 更新linkId的文章留言
  * @param {Function} callback: 执行完数据库操作的应该执行的回调函数
  */
-Post.get = function get(username, callback) {
-	mongodb.open(function(err, db) {
-		if (err) {
-			return callback(err);
-		}
+Post.prototype.updateComment=function(data, callback){
+    PostModel.find({linkId: data.pageId},function(err,obj){
+        var instance = new CommitModel(data);
+        var post = new PostModel(obj);
+        
 
-		db.collection('posts', function(err, collection) {
-			if (err) {
-				mongodb.close();
-				return callback(err);
-			}
-			var query = {};
-			if (username) {
-				query.user = username;
-			}
-			collection.find(query).sort({time: -1}).toArray(function(err, docs) {
-				mongodb.close();
-				if (err) {
-					callback(err, null);
-				}
+        PostModel.update(post, {'$push':{'commit':instance} }, function(err,obj) {
+            callback(err,obj);
+        } );
 
-				var posts = [];
-				docs.forEach(function(doc, index) {
-					var post = new Post(doc.user, doc.post, doc.time);
-					posts.push(post);
-				});
-				callback(null, posts);
-			});
-		});
-	});
-};
+        console.log(obj);
+    });
+}
+
+/*
+ * 查询linkId的文章
+ * @param {Function} callback: 返回查询到的结果
+ */
+Post.prototype.findByLink=function(id, callback){
+    PostModel.find({linkId:id},function(err,obj){
+        var instance = new PostModel(obj);
+        callback(err,obj);
+    });
+}
+
+/*
+ * 删除linkId的文章
+ * @param {Function} callback: 返回查询到的结果
+ */
+Post.prototype.removeByLink=function(id, callback){
+    PostModel.remove({linkId:id},function(err,obj){
+        callback(err,obj);
+    });
+}

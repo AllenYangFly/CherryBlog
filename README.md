@@ -2,6 +2,6 @@
 
 前端使用:Es6 + React + React-router + React-redux + immutableJs 
 
-后台使用:node + express + mongooDB
+后台使用:node + express + mongoose
 
 测试使用:mocha + shouldjs

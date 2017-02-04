@@ -1,6 +1,9 @@
-// 数据库连接
-var mongoose = require('mongoose'),
-    db = mongoose.connect("mongodb://localhost:27017/blogDB");
+/*
+ * 数据库连接模块 
+ */
+
+var mongoose = require('mongoose');
+    mongoose.connect("mongodb://localhost:27017/blogDB");
 
 mongoose.connection.on('connect', function() {
     console.log('Mongoose is open to:' +DB_URL);
@@ -44,43 +47,42 @@ mongoose.connection.on('disconnected', function() {
 
 
 // 实例2:增删改查
-var mongooseSchema = new mongoose.Schema({
-    username: {type: String, defalut: '匿名用户'},
-    title: {type: String},
-    content: {type: String},
-    time: {type: Date, defalut: Date.now},
-    age: {type: Number}
-});
+// var mongooseSchema = new mongoose.Schema({
+//     username: {type: String, defalut: '匿名用户'},
+//     title: {type: String},
+//     content: {type: String},
+//     time: {type: Date, defalut: Date.now},
+//     age: {type: Number}
+// });
 
 
-mongooseSchema.methods.findbyusername = function(username, callback) {
-    return this.model('mongoose').find({username: username}, callback);
-};
+// mongooseSchema.methods.findbyusername = function(username, callback) {
+//     return this.model('mongoose').find({username: username}, callback);
+// };
 
-mongooseSchema.static.findbytitle = function(title, callback) {
-    return this.model('mongoose').find({title,title}, callback);
-};
+// mongooseSchema.static.findbytitle = function(title, callback) {
+//     return this.model('mongoose').find({title,title}, callback);
+// };
 
-var mongooseModel = db.model('mongoose', mongooseSchema);
+// var mongooseModel = db.model('mongoose', mongooseSchema);
 
-var mongooseEntity = new mongooseModel({username: "allen"});
+// var mongooseEntity = new mongooseModel({username: "allen"});
 
-mongooseEntity.save(function(error) {
-    if(error) {
-        console.log(error);
-    } else {
-        console.log('saved OK!');
-    }
-});
+// mongooseEntity.save(function(error) {
+//     if(error) {
+//         console.log(error);
+//     } else {
+//         console.log('saved OK!');
+//     }
+// });
 
-mongooseEntity.findbyusername('allen', function(error,result) {
-    if(error) {
-        console.log(error);
-    } else {
-        console.log(result);
-    }
-
-});
+// mongooseEntity.findbyusername('allen', function(error,result) {
+//     if(error) {
+//         console.log(error);
+//     } else {
+//         console.log(result);
+//     }
+// });
 
 
 

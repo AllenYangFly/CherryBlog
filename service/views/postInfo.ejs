@@ -1,0 +1,59 @@
+<div class="row">
+    
+    <div class="nav span2">
+        <ul class=" nav nav-pills nav-stacked bs-docs-sidenav" role="tablist">
+            <li role="presentation" class="active"><a href="/admin">所有文章</a></li>
+            <li role="presentation" ><a href="/admin/newPost">新增文章</a></li>
+            <li role="presentation"><a href="/admin/leaveBoard">查看留言</a></li>
+        </ul>
+    </div>
+
+    
+    <div class="content span10">
+        <form class="form-horizontal" id="post" method="post" action="postInfo/savePost">
+            <fieldset>
+                <legend><%= posts.title %>&nbsp;<small>的文章详情<small></legend>
+                <div class="control-group">
+                    <label class="control-label" for="title">文章标题</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" id="title" name="title" value="<%= posts.title %>">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="nickName">文章作者</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" id="nickName" name="nickName" value="<%= posts.nickName %>">
+                    </div>
+                </div>
+                
+                
+                <div class="control-group">
+                    <label class="control-label" for="linkId">文章ID</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" id="linkId" name="linkId" value="<%= posts.linkId %>" disabled>
+                        <input type="text"  name="linkId" value="<%= posts.linkId %>" style="display:none;">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="createDate">文章时间</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" id="createDate" name="createDate" value="<%= posts.createDate %>">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="password">文章内容</label>
+                    <div class="controls">
+                        <textarea type="password" placeholder="请输入markdown转码后的HTML代码块" style="width:90%;" rows="10" id="password" name="content" ><%= posts.content %>
+                        </textarea>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">更新</button>
+                </div>
+            </fieldset>
+        </form>
+        
+    </div>
+    
+</div>
