@@ -46,12 +46,14 @@ class Article extends React.Component {
                 }
 
                 ArticleList.push(
-                    <Link to={'/post/'+data[item].linkId} key={item} >
-                        <dd >
+                    
+                        <dd key={'A' + item}>
+                            <Link to={'/post/'+data[item].linkId} key={item} >
                             <span > {data[item].title} </span>
                             <em>{ Month+'/'+Day }</em>
+                            </Link>
                         </dd>
-                    </Link>
+                    
                 );
             }
         }

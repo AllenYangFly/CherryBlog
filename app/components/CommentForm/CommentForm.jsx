@@ -25,7 +25,7 @@ class CommentForm extends React.Component {
             return response.json();
         }).then(data => {
             if(data.status == 1) {
-                alert("留言成功!");
+                window.location.reload();
             }
         }).catch(e => {
             console.log("Oops, error");

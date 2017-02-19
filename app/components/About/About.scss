@@ -1,3 +1,88 @@
 .intro {
-    padding: 1rem 2rem;
+    padding: 0rem 1rem;
+    .intro-top {
+        padding: 0 2rem;
+        h2 {
+            font-size: 2rem;
+            line-height: 2rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        p{
+            margin: 5px 0 20px;
+            line-height: 1.5rem;
+            font-size: 1.2rem;
+        }
+    }
+    .intro-list {
+        max-width: 550px;
+        width: 100%;
+        margin: auto;
+        margin-top: 30px;
+        .list-item {
+            width: 100%;
+            margin: 0 0 30px 0;
+            background: #fff;
+            position: relative;
+            border-radius: 3px;
+            border: 1px solid #edeeee;
+            h2 {
+                font-weight: bold;
+                font-size: 15px;
+                padding: 14px 20px;
+                margin: 0;
+                height: 50px;
+                line-height: 22px;
+            }
+            time {
+                font-size: 1rem;
+                position: absolute;
+                top: 0px;
+                line-height: 50px;
+                right: 5px;
+                margin-right: 1rem;
+                color: #a5a7aa;
+            }
+            img {
+                width: 100%;
+                margin-bottom: 1em;
+                border-top: 1px solid #eeefef;
+                border-bottom: 1px solid #eeefef;
+            }
+            .pro-control {
+                height: 50px;
+            }
+            ul {
+                padding: 0 1rem;
+                li {
+                    padding: 10px 0;
+                }
+                li:last-of-type {
+                    margin-top: 10px;
+                    border-top: 1px solid #eeefef;
+                }
+            }
+            .i-code,.i-demo {
+                display: inline-block;
+                padding: 8px 12px;
+                float: right;   
+                margin-right: 15px;
+                border: 1px solid #D5D6D8;
+                border-radius: 3px;
+                transition: background ease .5s;
+                cursor: pointer;
+                a {
+                    list-style: none;
+                    text-decoration: none;
+                    color: #a5a7aa;
+                }
+            }
+            .i-code:hover, .i-demo:hover {
+                background: #D5D6D8;
+            }
+            
+        }
+    }
+    
 }
+

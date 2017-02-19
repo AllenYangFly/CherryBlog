@@ -53,16 +53,46 @@ export const FetchPost = (subreddit) => {
     }
 }
 
+export const FetchMusic = (subreddit) => {
+    return dispatch => {
+        dispatch(MusicData({status: 0}))
+        return fetch("http://localhost:3000/",{
+            method: "GET", 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            return response.json();
+        }).then(data => {
+            if(data.status == 0) {
+                alert("请检查您的网络!");
+            }
+            dispatch(MusicData(data))
+        }).catch(function(e) {
+            console.log("Oops, error");
+        });
+    }
+}
+
 const ArticleData = (data) => {
     return {
         type: 'FETCH_ARTICLE',
-        data: data
+        data
     }
 }
 
 const PostData = (data) => {
     return {
         type: 'FETCH_POST',
-        data: data
+        data
+    }
+}
+
+
+const MusicData = (data) => {
+    return {
+        type: 'FETCH_MUSIC',
+        data
     }
 }

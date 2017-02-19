@@ -44,8 +44,18 @@ export const fetchPost = (state = initState, action) => {
     }
 }
 
+export const fetchMusic = (state = initState, action) => {
+    switch (action.type) {
+        case 'FETCH_MUSIC':
+            return Object.assign({}, state, {data: action.data})
+        default:
+            return {state}
+    }
+}
+
 export default combineReducers ({
     changeArticle,
     fetchArticle,
-    fetchPost
+    fetchPost,
+    fetchMusic
 }) 

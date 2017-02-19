@@ -1,11 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Style from './Page.scss'
+import CSSBase from './../common/github-markdown.css'
+import CSSDark from './../common/highlight/styles/github.css'
 import CommentForm from './../CommentForm/CommentForm.jsx'
 import { FetchPost } from './../../action/action.js'
 import {Link} from 'react-router'
-import Comment from './../Comment/Comment.jsx';
+import Comment from './../Comment/Comment.jsx'
+import ContentTitle from './../ContentTitle/ContentTitle.jsx'
 
+var Highlight = require('react-highlight');
 
 class Page extends React.Component {
     constructor(props) {
@@ -37,34 +41,39 @@ class Page extends React.Component {
                 );
 
                 
-                Comment.push(
-                    <div className="comment-item" key={item+'comment'}>
-                        <div className="comment-header">
-                            <p>
-                                <span><a href="">service.nickName</a></span>说:
-                            </p>
-                        </div>
-                        <div className="comment-content">
-                            <p>
-                                service.content
-                            </p>
-                        </div>
+                data[item].commit.forEach(function(commit, index) {
+                    Comment.push(
+                        <div className="comment-item" key={index+'comment'}>
+                            <div className="comment-header">
+                                <p>
+                                    <span><a href={commit.link}>{commit.nickName}</a></span>说:
+                                </p>
+                            </div>
+                            <div className="comment-content">
+                                <p>
+                                    {commit.textContent}
+                                </p>
+                            </div>
 
-                        <div className="comment-footer">
-                            <abbr>service.time</abbr>
+                            <div className="comment-footer">
+                                <abbr>{commit.CreateDate}</abbr>
+                            </div>
                         </div>
-                    </div>
-                );
+                    );
+                });
+                
             }  
         }
 
         return (
             <section className="post">
                 {Post}
-                <div className="post-content">
-                    <div dangerouslySetInnerHTML={{__html: PostInfo.content}} />
-                </div>
+                <Highlight innerHTML={true}>
+                    {PostInfo.content}
+                </Highlight>
+                <ContentTitle title="最新评论" isSingle="true"/>
                 {Comment}
+               
                 <CommentForm url="http://localhost:3000/post/saveComment" pageId={this.props.params.linkId}/>
             </section>
         );

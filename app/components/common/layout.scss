@@ -10,7 +10,11 @@
     box-sizing: border-box;
 }
 
-
+ul,li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 html, body, #app {
     height: 100%;
     font-size: 14px;
@@ -146,6 +150,7 @@ html, body, #app {
                 width: 100%;
                 left: 0 !important;
                 top: 60px;
+                padding-bottom: 60px;
             }
 
             .top {  

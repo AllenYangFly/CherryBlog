@@ -4,6 +4,7 @@ import Style from './common/layout.scss';
 import Video from './Video/Video.jsx';
 import SideNav from './SideNav/sideNav.jsx';
 import Search from './Search/Search.jsx';
+import MusicPlayer from './MusicPlayer/MusicPlayer.jsx'
 
 class Side extends React.Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class Side extends React.Component {
                 <div className="side-content">
                     <SideNav></SideNav>
                     <Search></Search>
+                    <MusicPlayer></MusicPlayer>
                 </div>
                 <div className="sideBorder"></div>
                 <a href="https://github.com/allenyangfly" target="_blank">

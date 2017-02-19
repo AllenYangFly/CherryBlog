@@ -1,9 +1,13 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var backsystemUrl = '/../service/views/blog';
+var webpack = require('webpack');
 
 module.exports = {
     devtool: 'eval-source-map',
-    entry: __dirname + "/components/Router.js",
+    entry: {
+        bundle: __dirname + "/components/Router.js",
+        vendor: ['react']
+    },
     output: {
 
         path: __dirname + backsystemUrl + "/dist/",
@@ -32,6 +36,9 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel'
+            }, {
+              test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+              loader: 'file'
             }
         ]
     },
@@ -47,12 +54,18 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Allen - 抹茶小屋',
+            title: 'Allen - 樱花博客',
             filename: __dirname+ backsystemUrl + '/dist/index.html',
             hash: true,
             inject: true,
             template: __dirname + '/src/index-template.html'
-        })
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
+        new webpack.optimize.CommonsChunkPlugin('vendor',  'vendor.js')
     ]
 };
 
